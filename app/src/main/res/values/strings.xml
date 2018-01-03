@@ -3,6 +3,7 @@
     <string name="label_output_hash_is">Hash:</string>
 
     <string name="toast_copied">Copied to clipboard</string>
+    <string name="input_hint_hash">Something to hash</string>
 
     <string-array name="hash_options">
         <item>MD5</item>
