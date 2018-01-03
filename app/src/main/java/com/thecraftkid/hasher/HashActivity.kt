@@ -2,15 +2,19 @@ package com.thecraftkid.hasher
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
-import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.EditText
 import com.thecraftkid.hasher.adapter.HashOptionsAdapter
 import com.thecraftkid.hasher.hash.HashOption
 
@@ -47,6 +51,15 @@ class HashActivity : AppCompatActivity() {
         viewModel.hash.observe(this, Observer {
             output.text = it
         })
+
+        output.setOnLongClickListener {
+            if (viewModel.option.value != null) {
+                copyToClipboard((it as TextView).text.toString(), viewModel.option.value!!)
+                Toast.makeText(this, "Hash copied to clipboard.", Toast.LENGTH_SHORT)
+                        .show()
+            }
+            true
+        }
     }
 
     private fun setupSpinner(spinner: Spinner) {
@@ -64,4 +77,10 @@ class HashActivity : AppCompatActivity() {
         }
     }
 
+    private fun copyToClipboard(text: String, option: HashOption) {
+        val manager: ClipboardManager =
+                getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val label = getString(R.string.label_copy_text, option.toString(), text)
+        manager.primaryClip = ClipData.newPlainText(label, text)
+    }
 }

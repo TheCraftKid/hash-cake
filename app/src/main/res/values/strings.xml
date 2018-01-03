@@ -4,6 +4,7 @@
 
     <string name="toast_copied">Copied to clipboard</string>
     <string name="input_hint_hash">Something to hash</string>
+    <string name="label_copy_text">%1$s Hash for %2$s</string>
 
     <string-array name="hash_options">
         <item>MD5</item>
