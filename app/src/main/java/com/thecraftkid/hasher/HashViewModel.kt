@@ -3,6 +3,7 @@ package com.thecraftkid.hasher
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import com.thecraftkid.hasher.hash.HashGenerator
 import com.thecraftkid.hasher.hash.HashOption
 
 /**
@@ -21,14 +22,19 @@ class HashViewModel : ViewModel() {
     val hash: LiveData<String>
         get() = hashData
 
-    fun setHash(hash: String) {
-        hashData.value = hash
+    fun setHash(input: String) {
+        hashData.value = when (optionData.value) {
+            HashOption.MD5 -> HashGenerator.generateMD5(input)
+            HashOption.SHA1 -> HashGenerator.generateSHA1(input)
+            HashOption.SHA256 -> HashGenerator.generateSHA256(input)
+            else -> throw IllegalStateException("")
+        }
     }
 
     val option: LiveData<HashOption>
         get() = optionData
 
     fun setHashOption(hashOption: HashOption) {
-        optionData.value = hashOption
+        optionData.value = hashOption;
     }
 }
