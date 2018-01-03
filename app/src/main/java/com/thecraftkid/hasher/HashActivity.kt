@@ -10,11 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
-import android.widget.EditText
+import android.widget.*
 import com.thecraftkid.hasher.adapter.HashOptionsAdapter
 import com.thecraftkid.hasher.hash.HashOption
 
@@ -50,6 +46,11 @@ class HashActivity : AppCompatActivity() {
         setupSpinner(hashFunction)
         viewModel.hash.observe(this, Observer {
             output.text = it
+        })
+        viewModel.option.observe(this, Observer {
+            if (viewModel.hash.value != null) {
+                viewModel.setHash(viewModel.hash.value!!)
+            }
         })
 
         output.setOnLongClickListener {
