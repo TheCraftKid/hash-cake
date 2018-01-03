@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Hasher</string>
+    <string name="label_output_hash_is">Hash:</string>
+
+    <string name="toast_copied">Copied to clipboard</string>
+
+    <string-array name="hash_options">
+        <item>MD5</item>
+        <item>SHA1</item>
+        <item>SHA256</item>
+    </string-array>
 </resources>
