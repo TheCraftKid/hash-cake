@@ -8,7 +8,7 @@ challenge.*
 ## Usage
 Simply type in a string, select a hashing function, and long-tap to copy 
 your result. The field updates as you type in a string.
-![App screenshot](/doc-images/screenshot_app_usage.png?raw=true | width=100)
+![App screenshot](/doc-images/screenshot_app_usage.png?raw=true)
 
 
 ## Building
